@@ -4,7 +4,7 @@ Copyright (c) 2026 Ganesh Gajjala / Technical University of Munich (TUM). All Ri
 
 ## CONFIDENTIAL AND PROPRIETARY ACADEMIC & RESEARCH PROPERTY
 
-This repository contains proprietary research code designed for classifying secondary porosity in borehole images. 
+This repository contains proprietary research logic and workflow structures. 
 
 No part of this repository, including but not limited to source code, algorithms, trained models, weights, documentation, or associated datasets, may be:
 * **Copied**
