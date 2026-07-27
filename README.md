@@ -10,7 +10,7 @@ The pipeline rectifies structural data inconsistencies, refines lithological and
 
 The database remediation process is divided into two distinct parts:
 1. **The Oracle Pipeline:** Connects directly to the live server to clean up simple data fields and typos.
-2. **The Pandas Pipeline:** Imports complex records into dataframes for structural, layer-depth, and mass-balance calculations.
+2. **The Pandas Pipeline:** Imports records into dataframes for correcting complexerrors related to structural, layer-depth, and mass-balance calculations
 
 ### Functional Support Modules
 These files contain core configurations and utility functions used across both processing pipelines:
@@ -37,7 +37,7 @@ This initial phase resolves text formatting anomalies, invalid placeholders, and
 4.  **`special_char_fix.py`**
     *   Strips broken special characters from petrographic fields and repairs malformed grain size boundary text.
 5.  **`parenthesis_comma_fix.py`**
-    *   Sanitizes syntax bugs by removing or reformatting misplaced commas and parenthetical entries.
+    *   Sanitizes syntax by removing or reformatting misplaced commas and parenthetical entries.
 6.  **`overlap_grain_fix.py`**
     *   Resolves overlapping classification boundaries for identical grain size fractions in the raw tables.
 
@@ -49,7 +49,7 @@ This phase loads the pre-cleaned data into memory to solve complex, dependent da
 2.  **`duplicate_symbol_fix.py`**
     *   Finds and prunes repetitive or duplicate petrographic shorthand symbols within single layers.
 3.  **`non_petro_fix.py`**
-    *   Removes non-geological characters or extraneous data entries accidentally logged in petrographic descriptions.
+    *   Removes non-geological characters or extraneous data entries logged in petrographic descriptions.
 4.  **`modelling_classes.py`**
     *   Assigns final modeling classes to petrographic structures, applies depth corrections to borehole intervals, and re-calculates offset borehole starting coordinates.
 5.  **`transit_expand.py`**
