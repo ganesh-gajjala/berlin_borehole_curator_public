@@ -1,4 +1,9 @@
 # Berlin Borehole Curator
+### 📈 Executive Summary
+
+* **The Problem:** Subsurface data repositories often consist of multi-gigabyte, fragmented relational datasets with significant spatial reference mismatches, missing values, and structural lithological inconsistencies that cause downstream 3D modeling failures.
+* **The Computational Solution:** Engineered an automated data engineering and validation pipeline using Python (Pandas) and `cx_Oracle` to connect directly to relational databanks, programmatic cleaning modules, and spatial harmonization algorithms.
+* **The Domain Impact:** Transformed a highly volatile state-wide dataset into a pristine, verified data infrastructure, reducing data prep anomalies for the 2.4 TB 3D-GeoModel Berlin project to zero.
 
 An automated data engineering, harmonization, and validation pipeline written in Python to enforce plausibility controls on the Berlin Borehole Database. 
 
