@@ -5,6 +5,12 @@
 * **The Computational Solution:** Engineered an automated data engineering and validation pipeline using Python (Pandas) and `cx_Oracle` to connect directly to relational databanks, programmatic cleaning modules, and spatial harmonization algorithms.
 * **The Domain Impact:** Transformed a highly volatile state-wide dataset into a pristine, verified data infrastructure, reducing data prep anomalies for the 2.4 TB 3D-GeoModel Berlin project to zero.
 
+<p align="center">
+  <img src="./Berlin_Aquifers.png"  alt="Borehole Image Porosity Pipeline Plot" width="100%">
+   <br />
+  <sub><b>Subsurface 3D Geological Model of Berlin with different Aquifers </b></sub>
+</p>
+
 An automated data engineering, harmonization, and validation pipeline written in Python to enforce plausibility controls on the Berlin Borehole Database. 
 
 The pipeline rectifies structural data inconsistencies, refines lithological and petrographic logs, corrects geometric height errors, and exports clean, standardized datasets optimized for developing fictitious grain size distribution curves.
