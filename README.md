@@ -8,7 +8,7 @@
 <p align="center">
   <img src="./Berlin_Aquifers.png"  alt="Borehole Image Porosity Pipeline Plot" width="100%">
    <br />
-  <sub><b>3D Geological Model of Berlin with different Aquifers </b></sub>
+  <sub><b>3D Geological model of Berlin with different underground aquifers </b></sub>
 </p>
 
 An automated data engineering, harmonization, and validation pipeline written in Python to enforce plausibility controls on the Berlin Borehole Database. 
