@@ -24,7 +24,7 @@ def export_stratigraphy_parameters(input_file_path, output_directory):
     parameters_df = pd.read_csv(input_file_path, delimiter='\t')
 
     # Define target stratigraphic horizons in order corresponding to ID 1 to 11
-    columns = [
+    strat_units = [
         'Q1_Holozean_Neu', 'Q2_Holozean_Alt', 'Q3_Holozean_bis_Weichsel',
         'Q4_Weichsel', 'Q5_Eem', 'Q6_Saale', 'Q7_Holstein', 
         'Q8_Elster', 'T1_Miozean', 'T2_Oberoligozean', 'T3_Rupel'
@@ -34,15 +34,16 @@ def export_stratigraphy_parameters(input_file_path, output_directory):
     stratigraphy_id = 1
 
     print("\nStarting export loop...")
-    for column in columns:
+    for strat_unit in strat_units:
         # 2. Filter data for the current Stratigraphie ID
         df = parameters_df[parameters_df["Stratigraphie"] == stratigraphy_id]
         
         # Check if the filtered dataframe contains any records
         if df.empty:
-            print(f"  [Warning] No rows found for Stratigraphie ID {stratigraphy_id} ('{column}'). Creating empty or skipping file.")
-        
-        export_df = df.copy()
+            print(f"  [Warning] No rows found for Stratigraphie ID {stratigraphy_id} ('{strat_unit}'). Creating empty or skipping file.")
+
+        # Avoiding nine rows with hydraulic conductivity values above 1 m/s
+        export_df = df[(df['kf_P90'] < 1)].copy()
 
         # 3. Format targeted float columns to decimal representation safely handling empty/NaN values
         for col in columns_to_format:
@@ -51,10 +52,10 @@ def export_stratigraphy_parameters(input_file_path, output_directory):
                 export_df[col] = export_df[col].map(lambda x: f"{x:.6f}" if pd.notnull(x) else "")
 
         # 4. Generate safe destination path
-        output_file_path = os.path.join(output_directory, f"{column}.csv")
+        output_file_path = os.path.join(output_directory, f"{strat_unit}.csv")
         
         # Save out to CSV
-        export_df.to_csv(output_file_path, index=True)
+        export_df.to_csv(output_file_path, index=True, index_label='row_id')
         print(f"  [Success] Exported ID {stratigraphy_id} -> {output_file_path} ({len(export_df)} rows written)")
 
         # Increment counter after loop cycle completes
