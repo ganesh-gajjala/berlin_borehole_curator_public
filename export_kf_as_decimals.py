@@ -55,17 +55,22 @@ def export_hydrogeology_parameters(input_file_path, output_directory):
        # Making a copy of dataframe for further arithmetic processing
         export_df = df.copy()
 
-        # 3. Format targeted float columns to 12 decimal scientific notation
+        # 3. Step A: Perform numeric scaling first across all target columns
         for col in columns_to_format:
             rescale_col = f"{col}_rescale"
             if rescale_col in export_df.columns:
-                # Divide to reverse Skua raw data multiplication with 1e9
-                rescaled_values = export_df[rescale_col] / 1e9
-                # Filter out numerically impossible kf values
-                export_df = export_df[export_df[rescale_col] < 1].copy()
-                # Converting hydraulic conductivity values to 12 digit decimals
-                export_df[col] = rescaled_values.map(
-                    lambda x: f"{x:.12f}" if pd.notnull(x) else ""
+                # Reverse Skua raw data multiplication with 1e9
+                export_df[col] = export_df[rescale_col] / 1e9
+
+        # Step B: Filter out rows where the physical kf_P90 value is >= 1 m/s
+        if "kf_P90" in export_df.columns:
+            export_df = export_df[export_df["kf_P90"] < 1].copy()
+
+        # Step C: Format remaining numerical rows into 12 decimal scientific notation
+        for col in columns_to_format:
+            if col in export_df.columns:
+                export_df[col] = export_df[col].map(
+                    lambda x: f"{x:.12e}" if pd.notnull(x) else ""
                 )
 
         # Deleting non-required columns safely
