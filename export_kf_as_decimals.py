@@ -62,7 +62,7 @@ def export_hydrogeology_parameters(input_file_path, output_directory):
                 # Divide to reverse Skua raw data multiplication with 1e9
                 rescaled_values = export_df[rescale_col] / 1e9
                 # Filter out numerically impossible kf values
-                export_df = export_df[export_df["kf_P90"] < 1].copy()
+                export_df = export_df[export_df[rescale_col] < 1].copy()
                 # Converting hydraulic conductivity values to 12 digit decimals
                 export_df[col] = rescaled_values.map(
                     lambda x: f"{x:.12f}" if pd.notnull(x) else ""
