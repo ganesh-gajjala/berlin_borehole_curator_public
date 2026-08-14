@@ -11,7 +11,7 @@ import os
 def export_hydrogeology_parameters(input_file_path, output_directory):
     """
     Reads the Berlin 3D GeoModell parameter file, groups data by 
-    Stratigraphie ID, formats specific permeability columns to decimal 
+    Stratigraphie ID, formats specific permeability columns to scientific 
     notation, and exports individual CSV files safely.
     """
     # Verify if the source file exists before trying to read it
